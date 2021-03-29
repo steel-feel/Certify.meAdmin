@@ -1,30 +1,63 @@
 <script>
-	export let name;
+	let files;
+	//export let name;
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<div class="navbar">
+		<div class="container">
+			<a class="logo">Cerify Me</a>
+			<h4>Admin</h4>
+		</div>
+	</div>
+
+	<section class="IPFSupload">
+		<div class="file-selector">
+			<input type="file" bind:files />
+
+			{#if files && files[0]}
+				
+				<p>{files[0].name}</p>
+				<img src={URL.createObjectURL(files[0])} />
+				
+			{/if}
+		</div>
+	</section>
 </main>
 
-<style>
-	main {
-		text-align: center;
+<style lang="scss">
+	.navbar {
+		background: var(--bg-color);
 		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
+
+		.container {
+			display: flex;
+			place-content: space-between;
+
+			a {
+				text-decoration: none;
+				font-weight: bold;
+				color: var(--primary-color);
+				font-size: 1.2rem;
+			}
+
+			h4 {
+				margin: 0;
+			}
+		}
 	}
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+	.IPFSupload {
+		display: block;
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
+		.file-selector {
+			display: block;
+
+			img{
+				width: 90vw;
+				height: 20em;
+			}
+
 		}
 	}
 </style>
